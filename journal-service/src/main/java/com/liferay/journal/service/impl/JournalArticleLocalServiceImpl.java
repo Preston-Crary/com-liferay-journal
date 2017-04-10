@@ -978,7 +978,7 @@ public class JournalArticleLocalServiceImpl
 
 		// Article localization
 
-		journalArticleLocalizationPersistence.removeByArticlePK(
+		journalArticleLocalizationPersistence.removeByJournalArticlePK(
 			article.getId());
 
 		// Email
@@ -2036,7 +2036,7 @@ public class JournalArticleLocalServiceImpl
 	@Override
 	public String getArticleDescription(long articlePK, String languageId) {
 		JournalArticleLocalization journalArticleLocalization =
-			journalArticleLocalizationPersistence.fetchByA_L(
+			journalArticleLocalizationPersistence.fetchByJA_L(
 				articlePK, languageId);
 
 		if (journalArticleLocalization == null) {
@@ -2052,7 +2052,8 @@ public class JournalArticleLocalServiceImpl
 			new HashMap<>();
 
 		List<JournalArticleLocalization> journalArticleLocalizationList =
-			journalArticleLocalizationPersistence.findByArticlePK(articlePK);
+			journalArticleLocalizationPersistence.findByJournalArticlePK(
+				articlePK);
 
 		for (JournalArticleLocalization journalArticleLocalization :
 				journalArticleLocalizationList) {
@@ -2297,7 +2298,8 @@ public class JournalArticleLocalServiceImpl
 	@Override
 	public List<String> getArticleLocalizationLanguageIds(long articlePK) {
 		List<JournalArticleLocalization> journalArticleLocalizationList =
-			journalArticleLocalizationPersistence.findByArticlePK(articlePK);
+			journalArticleLocalizationPersistence.findByJournalArticlePK(
+				articlePK);
 
 		List<String> availableLanguageIds = new ArrayList<>();
 
@@ -2629,7 +2631,7 @@ public class JournalArticleLocalServiceImpl
 	@Override
 	public String getArticleTitle(long articlePK, String languageId) {
 		JournalArticleLocalization journalArticleLocalization =
-			journalArticleLocalizationPersistence.fetchByA_L(
+			journalArticleLocalizationPersistence.fetchByJA_L(
 				articlePK, languageId);
 
 		if (journalArticleLocalization == null) {
@@ -2645,7 +2647,8 @@ public class JournalArticleLocalServiceImpl
 			new HashMap<>();
 
 		List<JournalArticleLocalization> journalArticleLocalizationList =
-			journalArticleLocalizationPersistence.findByArticlePK(articlePK);
+			journalArticleLocalizationPersistence.findByJournalArticlePK(
+				articlePK);
 
 		for (JournalArticleLocalization journalArticleLocalization :
 				journalArticleLocalizationList) {
@@ -3852,7 +3855,7 @@ public class JournalArticleLocalServiceImpl
 		JournalArticle article = journalArticlePersistence.findByG_A_V(
 			groupId, articleId, version);
 
-		journalArticleLocalizationPersistence.removeByA_L(
+		journalArticleLocalizationPersistence.removeByJA_L(
 			article.getId(), languageId);
 
 		String content = article.getContent();
